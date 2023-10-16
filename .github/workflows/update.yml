@@ -17,5 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run updater
-        run: ./update.sh
+      - name: Update Tapes
+        run: ruby tape_updater.rb
+
+      # - name: Run VHS
+      #   run: vhs
