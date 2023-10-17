@@ -17,8 +17,25 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: setup vhs repository
+        run: |
+          mkdir -p /etc/apt/keyrings
+          curl -fsSL https://repo.charm.sh/apt/gpg.key | gpg --dearmor -o /etc/apt/keyrings/charm.gpg
+          echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" | tee /etc/apt/sources.list.d/charm.list
+
+      - uses: awalsh128/cache-apt-pkgs-action@latest
+        with:
+          packages: vhs ffmpeg
+          version: 1.0
+
+      - name: Cleanup
+        run: rm renders/*.gif && rm tapes/*.tape
+
       - name: Update Tapes
         run: ruby tape_updater.rb
 
-      # - name: Run VHS
-      #   run: vhs
+      - name: Run VHS
+        run: for i in ./tapes/*.tape; do vhs "$i"; done
+
+      - name: Update README.md
+        run: ruby readme_updater.rb
