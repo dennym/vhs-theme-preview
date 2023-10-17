@@ -35,7 +35,7 @@ jobs:
         run: ruby tape_updater.rb
 
       - name: Run VHS
-        run: for i in ./tapes/*.tape; do vhs "$i"; done
+        run: for i in ./tapes/*.tape; do vhs "$i" 2> /dev/null; done
 
       - name: Update README.md
         run: ruby readme_updater.rb
