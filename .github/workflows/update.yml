@@ -39,3 +39,12 @@ jobs:
 
       - name: Update README.md
         run: ruby readme_updater.rb
+
+      - uses: EndBug/add-and-commit@v9
+        with:
+          add: '.'
+          author_name: Denny Mueller Mechanicus
+          author_email: contact@dennymueller.io'
+          default_author: user_info
+          message: 'Update of themes'
+          pathspec_error_handling: exitImmediately
