@@ -26,7 +26,9 @@ jobs:
           sudo apt-get install vhs ffmpeg
 
       - name: Cleanup
-        run: rm renders/*.gif && rm tapes/*.tape
+        run: |
+          rm -f renders/*.gif || true
+          rm -f tapes/*.tape || true
 
       - name: Update Tapes
         run: ruby tape_updater.rb
