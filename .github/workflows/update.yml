@@ -36,7 +36,7 @@ jobs:
 
       - name: Run VHS
         continue-on-error: true
-        run: for i in ./tapes/*.tape; do vhs "$i" 2>&1 /dev/null; done
+        run: for i in ./tapes/*.tape; do { vhs "$i" } >/dev/null 2>&1; done
 
       - name: Update README.md
         run: ruby readme_updater.rb
