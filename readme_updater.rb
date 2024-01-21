@@ -9,7 +9,7 @@ Dir.glob('./tapes/*.tape').each do |tape|
 
   themes << <<-eos
 ### #{theme_name}
-<img alt="Example of changing the theme to #{theme_name}" src="#{tape}" width="600" />
+<img alt="Example of changing the theme to #{theme_name}" src="./renders/#{theme_name}.gif" width="600" />
   eos
 end
 
